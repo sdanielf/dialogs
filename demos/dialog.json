@@ -1,0 +1,12 @@
+{"a":
+  {"type": "dialog",
+   "title": "Hola mundo",
+   "content": [{
+     "id": "nombre",
+     "type": "text",
+     "label": "Nombre: "
+   }],
+   "buttons": [
+     ["Ok", 0], ["Cancel", 1]
+   ]
+}}
