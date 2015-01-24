@@ -22,6 +22,34 @@ class Text:
         return self.entry.get_text()
 
 
+class Password(Text):
+    def build(self, info):
+        super(Password, self).build(info)
+        self.entry.set_visibility(False)
+
+
+class Number:
+    def build(self, info):
+        self.id = info['id']
+        self.widget = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
+        label = Gtk.Label()
+        label.set_text(info['label'])
+        label.show()
+        self.adjustment = Gtk.Adjustment(
+            info['value'], info['lower'], info['upper'],
+            info['step_increment'], info['page_increment'])
+        self.spinbutton = Gtk.SpinButton()
+        self.spinbutton.set_adjustment(self.adjustment)
+        self.spinbutton.set_value(info['value'])
+        self.spinbutton.show()
+        self.widget.pack_start(label, False, False, 0)
+        self.widget.pack_start(self.spinbutton, True, True, 0)
+        self.widget.show()
+
+    def value(self):
+        return self.spinbutton.get_value()
+
+
 class Dialog:
     def build(self, info):
         self.children = []
@@ -43,7 +71,12 @@ class Dialog:
         return output
 
 
-types = {'dialog': Dialog, 'text': Text}
+types = {
+    'dialog': Dialog,
+    'text': Text,
+    'password': Password,
+    'number': Number,
+}
 
 
 def build_element(info):

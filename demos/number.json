@@ -1,0 +1,17 @@
+{"a":
+  {"type": "dialog",
+   "title": "Numbers",
+   "content": [{
+     "id": "num",
+     "type": "number",
+     "label": "Number: ",
+     "value": 10,
+     "upper": 100,
+     "lower": 0,
+     "step_increment": 1,
+     "page_increment": 10
+   }],
+   "buttons": [
+     ["Ok", 0], ["Cancel", 1]
+   ]
+}}
